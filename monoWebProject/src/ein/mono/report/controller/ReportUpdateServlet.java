@@ -41,9 +41,16 @@ public class ReportUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String stopdate = request.getParameter("stopDate");
 		
-		int result = new ReportService().updateReport(stopdate);
+		
+		
+		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
+		String stopdate = request.getParameter("stopDate");
+		ReportVo report = new ReportVo();
+		System.out.println(reportNo);
+		System.out.println(stopdate);
+		
+		int result = new ReportService().updateReport(stopdate, reportNo);
 		
 		RequestDispatcher view = null;
 		

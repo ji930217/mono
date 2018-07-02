@@ -12,7 +12,7 @@ import ein.mono.report.model.vo.ReportVo;
 
 public class ReportDao {
 
-	public int reportUpdate(Connection con, String stopdate) {
+	public int reportUpdate(Connection con, String stopdate, int reportNo) {
 		int result = -1;
 		PreparedStatement pstmt = null;
 		String query = "";
@@ -20,29 +20,42 @@ public class ReportDao {
 		switch(stopdate) {
 		
 		case "1":
-			query = "";//제제안함
+			query = "UPDATE REPORT\r\n" + 
+					"SET ADMIN_CHECK = 'Y', BAN_STARTDATE = NULL, BAN_ENDDATE = NULL\r\n" + 
+					"WHERE REPORT_CODE = ?";//제제안함
 			break;
 			
 		case "2":
-			query = "";//3일
+			query = "UPDATE REPORT\r\n" + 
+					"SET ADMIN_CHECK = 'Y', BAN_STARTDATE = SYSDATE, BAN_ENDDATE = SYSDATE+3\r\n" + 
+					"WHERE REPORT_CODE = ?";//3일
 			break;
 			
 		case "3":
-			query = "";//7일
+			query = "UPDATE REPORT\r\n" + 
+					"SET ADMIN_CHECK = 'Y', BAN_STARTDATE = SYSDATE, BAN_ENDDATE = SYSDATE+7\r\n" + 
+					"WHERE REPORT_CODE = ?";//7일
 			break;
 			
 		case "4":
-			query = "";//30일
+			query = "UPDATE REPORT\r\n" + 
+					"SET ADMIN_CHECK = 'Y', BAN_STARTDATE = SYSDATE, BAN_ENDDATE = SYSDATE+30\r\n" + 
+					"WHERE REPORT_CODE = ?";//30일
 			break;
 			
 		case "5":
-			query = "";//영구정지
+			query = "UPDATE REPORT\r\n" + 
+					"SET ADMIN_CHECK = 'Y', BAN_STARTDATE = SYSDATE, BAN_ENDDATE = SYSDATE+99999999999999999\r\n" + 
+					"WHERE REPORT_CODE = ?";//영구정지
 			break;
 		}
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			
+			pstmt.setInt(1, reportNo);
+			
+			result = pstmt.executeUpdate();
 			//작성
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

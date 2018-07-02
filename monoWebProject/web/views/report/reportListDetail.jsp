@@ -59,7 +59,9 @@
 <%@ include file="../common/header.jsp" %>
 <div class = "outer">
 <form id = "reportCheck" method = "post" action = "/mono/reportUpdate.do" >
+<input type = "hidden" name = "reportNo" value = "<%=report.getReportCode()%>"/>
 	<h2 align = "center">신고내용</h2>
+	
 	<div class = "inner">
 	<br>
 	<br>

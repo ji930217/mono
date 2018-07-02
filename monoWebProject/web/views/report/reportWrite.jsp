@@ -53,6 +53,7 @@
 	<br>
 	신고사유
 		<select name="reportReason1" >
+  			<option value="(사기)">사기</option>
   			<option value="(광고)">광고</option>
   			<option value="(욕설)">욕설</option>
   			<option value="(저작권침해)">저작권침해</option>

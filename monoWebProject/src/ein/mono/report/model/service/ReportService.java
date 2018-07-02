@@ -12,9 +12,9 @@ import ein.mono.report.model.vo.ReportVo;
 
 public class ReportService {
 
-	public int updateReport(String stopdate) {
+	public int updateReport(String stopdate, int reportNo) {
 		Connection con = JDBCTemplate.getConnection();
-		int result = new ReportDao().reportUpdate(con, stopdate);//관리자가 n에서 y로 바꾸기
+		int result = new ReportDao().reportUpdate(con, stopdate, reportNo);//관리자가 n에서 y로 바꾸기
 		if(0 < result) {
 			JDBCTemplate.commit(con);
 		}else {
